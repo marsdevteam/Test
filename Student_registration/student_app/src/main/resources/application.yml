@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/student_app_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  cross:
+    filter: http://localhost:3000
+logging:
+  pattern:
+    console: "%-4relative [%thread] %X{CorrelationId} %-5level %logger{35} --- %msg %n"
+com:
+  university:
+    name: BHU, Harishchandra, Vidhyapith
+    course: MCA, BCA, MBA, BBA
