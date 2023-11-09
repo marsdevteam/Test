@@ -20,3 +20,15 @@ export function courses() {
     })
     return res
 }
+
+export function applications() {
+    const res = fetch('http://localhost:8080/api/student/application', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': JSON.parse(localStorage.getItem('currentUser')).access_token
+        }
+    })
+    return res
+}
+
