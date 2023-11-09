@@ -11,6 +11,6 @@ public interface AuthenticationService {
 
 	public SessionData findByToken();
 
-	public User findUserByUserMobile(String UserName);
+	public User findUserByUserMobile(String userName);
 
 }

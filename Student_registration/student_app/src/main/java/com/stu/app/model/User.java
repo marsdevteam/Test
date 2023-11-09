@@ -9,6 +9,10 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * Class for handling user data
+ *
+ */
 @Data
 @Entity
 public class User {

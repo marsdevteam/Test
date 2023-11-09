@@ -9,6 +9,9 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * This is a model class of Course Application
+ */
 @Data
 @Entity
 public class Application {
@@ -19,10 +22,10 @@ public class Application {
 
 	private Long studentId;
 
-	private String father;
+	private String fatherName;
 
 	private String email;
-	
+
 	private String mobile;
 
 	private String university;

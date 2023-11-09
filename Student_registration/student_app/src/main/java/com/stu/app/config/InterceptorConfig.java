@@ -11,7 +11,7 @@ import com.stu.app.utils.AuthenticationInterceptor;
 public class InterceptorConfig implements WebMvcConfigurer {
 
 	@Autowired
-	AuthenticationInterceptor authenticationFilter;
+	private AuthenticationInterceptor authenticationFilter;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {

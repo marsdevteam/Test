@@ -12,15 +12,24 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.jboss.logging.Logger;
 
+/**
+ * The PasswordUtils class provides methods for encrypting and decrypting passwords using the Blowfish algorithm.
+ */
 public class PasswordUtils {
 
 	private static final Logger log = Logger.getLogger(PasswordUtils.class);
 
-	private static final byte[] KEYDATA = "]Y7kS!btB+".getBytes();
+	private static final String KEY = "]Y7kS!btB+";
+	private static final byte[] KEYDATA = KEY.getBytes();
 	private static final String ALGORITHM = "Blowfish";
 
+	  /**
+     * Encrypts a password or phrase using the Blowfish algorithm.
+     *
+     * @param phrase The input password or phrase to be encrypted.
+     * @return The encrypted password as a Base64-encoded string, or null if an error occurs.
+     */
 	public static String encrypt(String phrase) {
-
 		try {
 			SecretKeySpec secretKeySpec = new SecretKeySpec(KEYDATA, ALGORITHM);
 			Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -35,8 +44,13 @@ public class PasswordUtils {
 		}
 	}
 
+	  /**
+     * Decrypts an encrypted password or phrase using the Blowfish algorithm.
+     *
+     * @param phrase The Base64-encoded encrypted password or phrase to be decrypted.
+     * @return The decrypted password or phrase, or null if an error occurs.
+     */
 	public static String decrypt(String phrase) {
-
 		try {
 			SecretKeySpec secretKeySpec = new SecretKeySpec(KEYDATA, ALGORITHM);
 			Cipher cipher = Cipher.getInstance(ALGORITHM);

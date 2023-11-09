@@ -22,6 +22,15 @@ import com.stu.app.utils.PasswordUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * The `AuthenticationServiceImpl` class is responsible for managing user
+ * authentication and generating authentication tokens. It provides methods for
+ * user login, user retrieval by mobile number, and session data retrieval. It
+ * also implements the `AuthenticationService` interface, which defines the
+ * contract for authentication-related methods.
+ *
+ * @author saurabh
+ */
 @Service
 @Slf4j
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -37,14 +46,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Override
 	@Transactional("transactionManager")
-	public Tokens login(CredentialsPayload cp) {
+	public Tokens login(CredentialsPayload credentialPayload) {
 		log.info("Trying to login..");
-		User user = authenticationDAO.findByMobile(cp.getMobile());
-		String encryptedPwd = PasswordUtils.encrypt(cp.getPassword());
+		User user = authenticationDAO.findByMobile(credentialPayload.mobile());
+		String encryptedPwd = PasswordUtils.encrypt(credentialPayload.password());
 		log.debug("user fetched by User Name");
 		if (user != null && encryptedPwd.equals(user.getPassword())) {
 			log.debug("User Verified and trying to Generate Token..");
-			return generateToken(cp);
+			return generateToken(credentialPayload);
 		} else {
 			log.error("Problem to authenticate, user not found");
 			throw new ApplicationException(ErrorStatus.PROBLEM_TO_AUTHENTICATE, "User not found");
@@ -66,7 +75,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	public SessionData findByToken() {
 		log.info("getting sessionData by Token");
 		String token = getBearerTokenHeader();
-		SessionData sessionData = sessionDataDAO.findByToken(token);
+		SessionData sessionData = sessionDataDAO.findByAccessToken(token);
 		log.info("sessionData fetched successfully by Token");
 		return sessionData;
 	}
@@ -75,13 +84,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		log.info("Generating Token");
 		Tokens token = JwtTokenUtil.generateTokens(cp);
 		log.debug("token generated..");
-		SessionData sessionData = new SessionData();
-		sessionData.setTokenType(token.getToken_type());
-		sessionData.setAccessToken(token.getAccess_token());
-		sessionData.setLoginId(cp.getMobile());
-		sessionData.setCreatedOn(LocalDateTime.now());
-		sessionData.setLoginCount(1);
-		SessionData sd = sessionDataDAO.findByLoginId(cp.getMobile());
+		SessionData sessionData = setTokenToSession(token, cp);
+		SessionData sd = sessionDataDAO.findByLoginId(cp.mobile());
 		if (sd != null) {
 			log.debug("deleting previous sessionData if exist, before save new sessionData");
 			sessionDataDAO.delete(sd);
@@ -90,6 +94,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		sessionDataDAO.save(sessionData);
 		log.info("Token Generated and saved to sessionData");
 		return token;
+	}
+
+	private SessionData setTokenToSession(Tokens token, CredentialsPayload cp) {
+		SessionData sessionData = new SessionData();
+		sessionData.setTokenType(token.tokenType());
+		sessionData.setAccessToken(token.accessToken());
+		sessionData.setLoginId(cp.mobile());
+		sessionData.setCreatedOn(LocalDateTime.now());
+		sessionData.setLoginCount(1);
+		return sessionData;
+
 	}
 
 	private String getBearerTokenHeader() {

@@ -3,27 +3,15 @@ package com.stu.app.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.stu.app.utils.JWTConstant;
-
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Class for handling authentication tokens
  *
  */
-@Data
-public class Tokens implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+public record Tokens(@JsonProperty(value = "token_type") String tokenType,
+		@JsonProperty(value = "access_token") String accessToken,
+		@JsonProperty(value = "access_token_validity") LocalDateTime accessTokenValidity) implements Serializable {
 
-	private String token_type = JWTConstant.JWT.name();
-
-	private String access_token;
-
-	private LocalDateTime access_token_validity;
-
-	public Tokens(String token, LocalDateTime tokenValidity) {
-		this.access_token = token;
-		this.access_token_validity = tokenValidity;
-	}
 }

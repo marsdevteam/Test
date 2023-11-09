@@ -7,12 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ApplicationException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private final ErrorStatus errorCode;
-	
+
 	private final String message;
 }

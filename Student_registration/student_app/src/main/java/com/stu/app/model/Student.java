@@ -13,6 +13,10 @@ import com.stu.app.utils.PasswordUtils;
 
 import lombok.Data;
 
+/**
+ * Class for handling student data
+ *
+ */
 @Data
 @Entity
 public class Student {
@@ -31,7 +35,7 @@ public class Student {
 
 	private String mobile;
 
-	private String father;
+	private String fatherName;
 
 	private String mother;
 

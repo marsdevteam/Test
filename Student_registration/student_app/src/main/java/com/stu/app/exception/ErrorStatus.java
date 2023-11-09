@@ -19,7 +19,7 @@ public enum ErrorStatus {
     INVALID_REQUEST("INVALID_REQUEST", HttpStatus.BAD_REQUEST),
 	PROBLEM_TO_AUTHENTICATE("PROBLEM_TO_AUTHENTICATE", HttpStatus.BAD_GATEWAY);
 
-    private String code;
-    private HttpStatus httpStatus;
+    private final String code;
+    private final HttpStatus httpStatus;
 
 }

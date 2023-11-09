@@ -10,6 +10,10 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * class for handling sessiondata
+ *
+ */
 @Data
 @Entity
 public class SessionData {

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface CourseService {
 
-	public List<String> getAllCourse();
+	public List<String> getAllCourses();
 }
