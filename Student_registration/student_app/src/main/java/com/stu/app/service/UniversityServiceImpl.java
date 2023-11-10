@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * of universities from configuration properties and encapsulates them as a List of
  * strings.
  *
- * @author saurabh
+ * @author user
  */
 @Slf4j
 @Service

@@ -23,9 +23,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author user This is a controller class. All end points are implemented here.
- *         Student registration, login and applied for courses's end points are
- *         here
+ * @author user 
+ * This is a controller class. All end points are implemented here.
+ * Student registration, login and applied for courses's end points are here.
  */
 @Slf4j
 @RestController

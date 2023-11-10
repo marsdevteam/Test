@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * also implements the `AuthenticationService` interface, which defines the
  * contract for authentication-related methods.
  *
- * @author saurabh
+ * @author user
  */
 @Service
 @Slf4j
