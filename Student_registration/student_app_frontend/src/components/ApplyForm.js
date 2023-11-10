@@ -12,7 +12,6 @@ function ApplyForm() {
     const [university, setUniversity] = React.useState('');    
     const [comments, setComments] = React.useState('');
 
-
     useEffect(() => {
         universities()
             .then(async (res) => {
@@ -58,10 +57,8 @@ function ApplyForm() {
         } else {
             toast.error("You have already applied");
         }
-
     }
-
-
+    
     return <Container component="main" maxWidth="xs">
         <Box sx={{
             marginTop: 8,

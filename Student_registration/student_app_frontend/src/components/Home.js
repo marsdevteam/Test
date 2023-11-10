@@ -1,8 +1,11 @@
-import Menu from '../data/Menu';
+import SideBar from './SideBar';
+import { Menu } from '../data/Menu'
 
 function Home() {
+const menuList = Menu()
+
     return <>
-        <Menu />
+        <SideBar data = {menuList}/>
     </>
 }
 

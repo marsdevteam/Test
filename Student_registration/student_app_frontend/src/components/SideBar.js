@@ -75,7 +75,6 @@ export default function SideBar(props) {
         if (res === "/") {
             localStorage.removeItem('currentUser');
         }
-        console.log(res);
         navigate(res)
     }
     const theme = useTheme();

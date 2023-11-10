@@ -1,16 +1,11 @@
-import SideBar from '../components/SideBar'
-function Menu() {
-    
-    const menus = [
-      {menu: 'Home', link: '/home'},
-      {menu: 'Apply', link: '/home/apply'},
-      {menu: 'About Us', link: '/home/about'},
-      {menu: 'Logout', link: '/'}
-    ]
+export function Menu() {
 
-    return <>
-    <SideBar data={menus}/>
-    </>
+  const menus = [
+    { menu: 'Home', link: '/home' },
+    { menu: 'Apply', link: '/home/apply' },
+    { menu: 'About Us', link: '/home/about' },
+    { menu: 'Logout', link: '/' }
+  ]
+
+  return menus
 }
-
-export default Menu;
